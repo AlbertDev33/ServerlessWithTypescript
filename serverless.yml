@@ -1,0 +1,23 @@
+service:
+  name: crud
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+    webpack:
+      webpackConfig: ./webpack.config.js
+      includeModules: true
+
+provider:
+  name: aws
+
+functions:
+  hello:
+    handler: src/main/app.handle
+    events:
+      - http:
+          path: /users
+          method: POST
+          cors: true
